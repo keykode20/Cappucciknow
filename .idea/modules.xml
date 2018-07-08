@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CBT/CBT.iml" filepath="$PROJECT_DIR$/CBT/CBT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cappucciknow.iml" filepath="$PROJECT_DIR$/Cappucciknow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hook/Hook.iml" filepath="$PROJECT_DIR$/Hook/Hook.iml" />
+    </modules>
+  </component>
+</project>
