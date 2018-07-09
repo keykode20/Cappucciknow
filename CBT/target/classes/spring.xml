@@ -1,15 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+    ">
 
 
-
-    <bean id="node1" class="co.uk.emilyo.cbt.node.impl.Example1Node">
+    <bean id="node1" class="co.uk.emilyo.cbt.node.impl.example.Example1Node">
         <property name="nextNode" ref="node2" />
     </bean>
 
-    <bean id="node2" class="co.uk.emilyo.cbt.node.impl.Example2Node"/>
+    <bean id="node2" class="co.uk.emilyo.cbt.node.impl.example.Example2Node"/>
+
+
+    <bean id="createRepo" class="co.uk.emilyo.cbt.node.impl.git.CreateRepositoryNode">
+        <property name="generateResourceChain" ref="generateResourceChain" />
+    </bean>
+
+    <bean id="generateResourceChain" class="co.uk.emilyo.cbt.node.impl.git.FileSystemResourceReaderNode">
+        <property name="nextNode" ref="mapToClassGeneratorNode" />
+    </bean>
+
+    <bean id="mapToClassGeneratorNode" class="co.uk.emilyo.cbt.node.impl.git.MapToClassGeneratorNode" />
+
+
+
+
+
+
+    <bean id="fileSystemFeatureFileReaderImpl" class="co.uk.emilyo.cbt.node.impl.git.old.FileSystemFeatureFileReaderImpl">
+        <property name="featureFileMapper" ref="featureFileMapper" />
+        <property name="strategy" ref="standardStrategy" />
+    </bean>
+
+    <bean id="standardStrategy" class="co.uk.emilyo.cbt.node.impl.git.old.FeatureFileMapperPopulatorStandardStrategy" />
+
+    <bean id="featureFileMapper" class="co.uk.emilyo.cbt.node.impl.git.old.FeatureFileMapper">
+        <property name="map" ref="proxyMap" />
+    </bean>
+
+    <util:map id="proxyMap" key-type="java.lang.String" value-type="java.util.List&lt;java.lang.String&gt;">
+        <entry key="Scenario" value-ref="scenario" />
+        <entry key="Given" value-ref="given" />
+        <entry key="When" value-ref="when" />
+        <entry key="And" value-ref="and"/>
+        <entry key="Than" value-ref="than"/>
+    </util:map>
+
+    <util:list id="scenario" value-type="java.lang.String" />
+    <util:list id="given" value-type="java.lang.String" />
+    <util:list id="when" value-type="java.lang.String" />
+    <util:list id="and" value-type="java.lang.String" />
+    <util:list id="than" value-type="java.lang.String" />
+
+
 
 </beans>

@@ -12,9 +12,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Cappucciknow" target="1.5" />
-      <module name="CBT" target="1.5" />
-      <module name="Common" target="1.5" />
+      <module name="Cappucciknow" target="1.8" />
+      <module name="CBT" target="1.8" />
+      <module name="Common" target="1.8" />
       <module name="Hook" target="1.8" />
     </bytecodeTargetLevel>
   </component>
